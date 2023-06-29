@@ -1,1042 +1,1055 @@
 {
-    "annotations": {
-      "list": [
-        {
-          "builtIn": 1,
-          "datasource": {
-            "type": "grafana",
-            "uid": "-- Grafana --"
-          },
-          "enable": true,
-          "hide": true,
-          "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
-          "type": "dashboard"
-        }
-      ]
-    },
-    "editable": true,
-    "fiscalYearStartMonth": 0,
-    "graphTooltip": 0,
-    "id": 5,
-    "links": [],
-    "liveNow": false,
-    "panels": [
+  "annotations": {
+    "list": [
       {
+        "builtIn": 1,
         "datasource": {
-          "type": "yesoreyeram-infinity-datasource",
-          "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+          "type": "grafana",
+          "uid": "-- Grafana --"
         },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 5,
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": true,
+      "title": "GitHub",
+      "tooltip": "",
+      "type": "link",
+      "url": "https://github.com/SaintPatrick86/TrainDashboard"
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Name$/",
+          "values": true
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "name",
+              "text": "",
+              "type": "string"
             },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
+            {
+              "selector": "mailingAddress.zipcode",
+              "text": "PLZ",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "result",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-xml",
+          "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/station-data/v2/stations/${StationID}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "number": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "mailingAddress.zipcode": "PLZ",
+              "name": "Name"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 0
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^PLZ_Stadt$/",
+          "values": true
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "name",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "mailingAddress.zipcode",
+              "text": "PLZ",
+              "type": "string"
+            },
+            {
+              "selector": "mailingAddress.city",
+              "text": "Stadt",
+              "type": "string"
+            },
+            {
+              "selector": "mailingAddress.street",
+              "text": "Straße",
+              "type": "string"
+            }
+          ],
+          "computed_columns": [
+            {
+              "selector": "Straße + \" | \"  + PLZ + \"  \" + Stadt",
+              "text": "PLZ_Stadt",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "result",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-xml",
+          "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/station-data/v2/stations/${StationID}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "false": {
                   "color": "red",
-                  "value": 80
+                  "index": 0,
+                  "text": "0"
+                },
+                "true": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "1"
                 }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 3,
-          "w": 3,
-          "x": 0,
-          "y": 0
-        },
-        "id": 3,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "/^Name$/",
-            "values": true
-          },
-          "textMode": "value"
-        },
-        "pluginVersion": "10.0.1",
-        "targets": [
-          {
-            "columns": [
-              {
-                "selector": "name",
-                "text": "",
-                "type": "string"
               },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
               {
-                "selector": "mailingAddress.zipcode",
-                "text": "PLZ",
-                "type": "string"
+                "color": "green",
+                "value": null
               }
-            ],
-            "datasource": {
-              "type": "yesoreyeram-infinity-datasource",
-              "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 8,
+        "x": 6,
+        "y": 0
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "first"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "textMode": "name"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "hasParking",
+              "text": "Parken",
+              "type": "string"
             },
-            "filters": [],
-            "format": "table",
-            "global_query_id": "",
-            "parser": "backend",
-            "refId": "A",
-            "root_selector": "result",
-            "source": "url",
-            "type": "json",
-            "uql": "parse-xml",
-            "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/station-data/v2/stations/${StationID}",
-            "url_options": {
-              "data": "",
-              "method": "GET"
+            {
+              "selector": "hasBicycleParking",
+              "text": "Fahrad-Parken",
+              "type": "string"
+            },
+            {
+              "selector": "hasTaxiRank",
+              "text": "Taxi",
+              "type": "string"
+            },
+            {
+              "selector": "hasWiFi",
+              "text": "Wifi",
+              "type": "string"
+            },
+            {
+              "selector": "hasPublicFacilities",
+              "text": "Öffentliches WC",
+              "type": "string"
             }
+          ],
+          "computed_columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "result",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-xml",
+          "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/station-data/v2/stations/${StationID}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
           }
-        ],
-        "transformations": [
-          {
-            "id": "organize",
-            "options": {
-              "excludeByName": {
-                "number": true
+        }
+      ],
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
               },
-              "indexByName": {},
-              "renameByName": {
-                "mailingAddress.zipcode": "PLZ",
-                "name": "Name"
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Datum"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "time: DD.MM.YYYY"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Uhrzeit"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "time: HH:mm"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Bahnlinie"
+            },
+            "properties": [
+              {
+                "id": "noValue",
+                "value": "0"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 17,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "dp.-pp",
+              "text": "Gleis",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+          },
+          "filterExpression": "Gleis >0",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "Streckeninfo",
+          "root_selector": "timetable.s",
+          "source": "url",
+          "type": "xml",
+          "uql": "parse-xml",
+          "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1/plan/${StationEva}/${__from:date:YYMMDD}/${__to:date:HH}",
+          "url_options": {
+            "data": "",
+            "headers": [],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Reisemöglichkeiten akt. Stunde",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "mode": "gradient",
+              "type": "color-background"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Datum"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "time: DD.MM.YYYY"
+              },
+              {
+                "id": "custom.width",
+                "value": 102
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Gleis"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 78
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Uhrzeit"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 99
+              },
+              {
+                "id": "unit",
+                "value": "time: HH:mm"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Bahntyp"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 105
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Bahnlinie"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 119
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ziel"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 1241
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 17,
+        "w": 21,
+        "x": 0,
+        "y": 3
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": [],
+          "reducer": [
+            "count"
+          ],
+          "show": false
+        },
+        "frameIndex": 1,
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Uhrzeit"
+          }
+        ]
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "dp.-pt",
+              "text": "Datum",
+              "type": "string"
+            },
+            {
+              "selector": "dp.-pt",
+              "text": "Uhrzeit",
+              "type": "string"
+            },
+            {
+              "selector": "dp.-pp",
+              "text": "Gleis",
+              "type": "number"
+            },
+            {
+              "selector": "dp.-ppth",
+              "text": "Ziel",
+              "type": "string"
+            },
+            {
+              "selector": "tl.-c",
+              "text": "Bahntyp",
+              "type": "string"
+            },
+            {
+              "selector": "dp.-l",
+              "text": "Bahnlinie",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+          },
+          "filterExpression": "Gleis >0",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "Streckeninfo",
+          "root_selector": "timetable.s",
+          "source": "url",
+          "type": "xml",
+          "uql": "parse-xml",
+          "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1/plan/${StationEva}/${__from:date:YYMMDD}/${__to:date:HH}",
+          "url_options": {
+            "data": "",
+            "headers": [],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Abfahrtsmonitor",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "dateFormat": "YYMMDDhhmm",
+                "destinationType": "time",
+                "targetField": "Datum"
+              },
+              {
+                "dateFormat": "YYMMDDhhmm",
+                "destinationType": "time",
+                "targetField": "Uhrzeit"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Bahntyp": false
+            },
+            "indexByName": {
+              "Bahnlinie": 3,
+              "Bahntyp": 2,
+              "Datum": 0,
+              "Gleis": 4,
+              "Uhrzeit": 1,
+              "Ziel": 5
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 7,
+      "panels": [],
+      "title": "Statistics",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 5,
+        "x": 0,
+        "y": 21
+      },
+      "id": 6,
+      "options": {
+        "displayLabels": [
+          "name",
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/.*/",
+          "values": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "dp.-pp",
+              "text": "Gleis",
+              "type": "number"
+            },
+            {
+              "selector": "tl.-c",
+              "text": "Zugtyp",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+          },
+          "filterExpression": "Gleis >0",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "Streckeninfo",
+          "root_selector": "timetable.s",
+          "source": "url",
+          "summarizeBy": "",
+          "type": "xml",
+          "uql": "parse-xml",
+          "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1/plan/${StationEva}/${__from:date:YYMMDD}/${__to:date:HH}",
+          "url_options": {
+            "data": "",
+            "headers": [],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Reisemöglichkeiten Zugtyp",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Gleis": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "aggregate"
+              },
+              "Zugtyp": {
+                "aggregations": [],
+                "operation": "groupby"
               }
             }
           }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Gleis (count)": "Anzahl"
+            }
+          }
+        },
+        {
+          "id": "rowsToFields",
+          "options": {}
+        }
+      ],
+      "type": "piechart"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "Karlsruhe Hbf",
+          "value": "Karlsruhe Hbf"
+        },
+        "hide": 0,
+        "label": "Station Suche",
+        "name": "Station",
+        "options": [
+          {
+            "selected": true,
+            "text": "Frankfurt (Main) Hbf",
+            "value": "Frankfurt (Main) Hbf"
+          }
         ],
-        "type": "stat"
+        "query": "Frankfurt (Main) Hbf",
+        "skipUrlSync": false,
+        "type": "textbox"
       },
       {
+        "current": {
+          "selected": false,
+          "text": "true",
+          "value": "8000191"
+        },
         "datasource": {
           "type": "yesoreyeram-infinity-datasource",
           "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
         },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 3,
-          "w": 3,
-          "x": 3,
-          "y": 0
-        },
-        "id": 8,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "/^PLZ_Stadt$/",
-            "values": true
-          },
-          "textMode": "value"
-        },
-        "pluginVersion": "10.0.1",
-        "targets": [
-          {
+        "definition": "Infinity DB Timetable- (infinity) json",
+        "hide": 2,
+        "includeAll": false,
+        "label": "StationEva",
+        "multi": false,
+        "name": "StationEva",
+        "options": [],
+        "query": {
+          "infinityQuery": {
             "columns": [
               {
-                "selector": "name",
-                "text": "",
-                "type": "string"
+                "selector": "number",
+                "text": "number",
+                "type": "number"
               },
               {
-                "selector": "mailingAddress.zipcode",
-                "text": "PLZ",
-                "type": "string"
-              },
-              {
-                "selector": "mailingAddress.city",
-                "text": "Stadt",
-                "type": "string"
-              },
-              {
-                "selector": "mailingAddress.street",
-                "text": "Straße",
+                "selector": "isMain",
+                "text": "main",
                 "type": "string"
               }
             ],
             "computed_columns": [
               {
-                "selector": "Straße + \" | \"  + PLZ + \"  \" + Stadt",
-                "text": "PLZ_Stadt",
+                "selector": "",
+                "text": "",
                 "type": "string"
               }
             ],
-            "datasource": {
-              "type": "yesoreyeram-infinity-datasource",
-              "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
-            },
+            "filterExpression": "main == 'true'",
             "filters": [],
             "format": "table",
-            "global_query_id": "",
             "parser": "backend",
-            "refId": "A",
+            "refId": "variable",
+            "root_selector": "result.evaNumbers",
+            "source": "url",
+            "summarizeExpression": "",
+            "type": "json",
+            "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/station-data/v2/stations?searchstring=${EvaSelect}",
+            "url_options": {
+              "data": "",
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "3107",
+          "value": "3107"
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+        },
+        "definition": "Infinity DB Timetable- (infinity) json",
+        "hide": 2,
+        "includeAll": false,
+        "label": "StationID",
+        "multi": false,
+        "name": "StationID",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "number",
+                "text": "",
+                "type": "number"
+              }
+            ],
+            "filters": [],
+            "format": "table",
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "result",
+            "source": "url",
+            "summarizeExpression": "min(number)",
+            "type": "json",
+            "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/station-data/v2/stations?searchstring=${EvaSelect}",
+            "url_options": {
+              "data": "",
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Karlsruhe Hbf",
+          "value": "Karlsruhe Hbf"
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+        },
+        "definition": "Infinity DB Timetable- (infinity) json",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Auswahl",
+        "multi": false,
+        "name": "EvaSelect",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "name",
+                "text": "",
+                "type": "string"
+              }
+            ],
+            "filters": [],
+            "format": "table",
+            "parser": "backend",
+            "refId": "variable",
             "root_selector": "result",
             "source": "url",
             "type": "json",
-            "uql": "parse-xml",
-            "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/station-data/v2/stations/${StationID}",
+            "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/station-data/v2/stations?searchstring=${Station}*",
             "url_options": {
               "data": "",
               "method": "GET"
             }
-          }
-        ],
-        "transformations": [],
-        "type": "stat"
-      },
-      {
-        "datasource": {
-          "type": "yesoreyeram-infinity-datasource",
-          "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [
-              {
-                "options": {
-                  "false": {
-                    "color": "red",
-                    "index": 0,
-                    "text": "0"
-                  },
-                  "true": {
-                    "color": "green",
-                    "index": 1,
-                    "text": "1"
-                  }
-                },
-                "type": "value"
-              }
-            ],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
           },
-          "overrides": []
+          "query": "",
+          "queryType": "infinity"
         },
-        "gridPos": {
-          "h": 3,
-          "w": 8,
-          "x": 6,
-          "y": 0
-        },
-        "id": 9,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "vertical",
-          "reduceOptions": {
-            "calcs": [
-              "first"
-            ],
-            "fields": "/.*/",
-            "values": false
-          },
-          "textMode": "name"
-        },
-        "pluginVersion": "10.0.1",
-        "targets": [
-          {
-            "columns": [
-              {
-                "selector": "hasParking",
-                "text": "Parken",
-                "type": "string"
-              },
-              {
-                "selector": "hasBicycleParking",
-                "text": "Fahrad-Parken",
-                "type": "string"
-              },
-              {
-                "selector": "hasTaxiRank",
-                "text": "Taxi",
-                "type": "string"
-              },
-              {
-                "selector": "hasWiFi",
-                "text": "Wifi",
-                "type": "string"
-              },
-              {
-                "selector": "hasPublicFacilities",
-                "text": "Öffentliches WC",
-                "type": "string"
-              }
-            ],
-            "computed_columns": [],
-            "datasource": {
-              "type": "yesoreyeram-infinity-datasource",
-              "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
-            },
-            "filters": [],
-            "format": "table",
-            "global_query_id": "",
-            "parser": "backend",
-            "refId": "A",
-            "root_selector": "result",
-            "source": "url",
-            "type": "json",
-            "uql": "parse-xml",
-            "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/station-data/v2/stations/${StationID}",
-            "url_options": {
-              "data": "",
-              "method": "GET"
-            }
-          }
-        ],
-        "transformations": [],
-        "type": "stat"
-      },
-      {
-        "datasource": {
-          "type": "yesoreyeram-infinity-datasource",
-          "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
-        },
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "fixedColor": "blue",
-              "mode": "fixed"
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Datum"
-              },
-              "properties": [
-                {
-                  "id": "unit",
-                  "value": "time: DD.MM.YYYY"
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Uhrzeit"
-              },
-              "properties": [
-                {
-                  "id": "unit",
-                  "value": "time: HH:mm"
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Bahnlinie"
-              },
-              "properties": [
-                {
-                  "id": "noValue",
-                  "value": "0"
-                }
-              ]
-            }
-          ]
-        },
-        "gridPos": {
-          "h": 3,
-          "w": 4,
-          "x": 17,
-          "y": 0
-        },
-        "id": 5,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "count"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "textMode": "auto"
-        },
-        "pluginVersion": "10.0.1",
-        "targets": [
-          {
-            "columns": [
-              {
-                "selector": "dp.-pp",
-                "text": "Gleis",
-                "type": "number"
-              }
-            ],
-            "datasource": {
-              "type": "yesoreyeram-infinity-datasource",
-              "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
-            },
-            "filterExpression": "Gleis >0",
-            "filters": [],
-            "format": "table",
-            "global_query_id": "",
-            "parser": "backend",
-            "refId": "Streckeninfo",
-            "root_selector": "timetable.s",
-            "source": "url",
-            "type": "xml",
-            "uql": "parse-xml",
-            "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1/plan/${StationEva}/${__from:date:YYMMDD}/${__to:date:HH}",
-            "url_options": {
-              "data": "",
-              "headers": [],
-              "method": "GET"
-            }
-          }
-        ],
-        "title": "Reisemöglichkeiten akt. Stunde",
-        "transformations": [],
-        "type": "stat"
-      },
-      {
-        "datasource": {
-          "type": "yesoreyeram-infinity-datasource",
-          "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
-        },
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "fixedColor": "blue",
-              "mode": "fixed"
-            },
-            "custom": {
-              "align": "left",
-              "cellOptions": {
-                "mode": "gradient",
-                "type": "color-background"
-              },
-              "filterable": true,
-              "inspect": false
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Datum"
-              },
-              "properties": [
-                {
-                  "id": "unit",
-                  "value": "time: DD.MM.YYYY"
-                },
-                {
-                  "id": "custom.width",
-                  "value": 102
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Gleis"
-              },
-              "properties": [
-                {
-                  "id": "custom.width",
-                  "value": 78
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Uhrzeit"
-              },
-              "properties": [
-                {
-                  "id": "custom.width",
-                  "value": 99
-                },
-                {
-                  "id": "unit",
-                  "value": "time: HH:mm"
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Bahntyp"
-              },
-              "properties": [
-                {
-                  "id": "custom.width",
-                  "value": 105
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Bahnlinie"
-              },
-              "properties": [
-                {
-                  "id": "custom.width",
-                  "value": 119
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Ziel"
-              },
-              "properties": [
-                {
-                  "id": "custom.width",
-                  "value": 1241
-                }
-              ]
-            }
-          ]
-        },
-        "gridPos": {
-          "h": 17,
-          "w": 21,
-          "x": 0,
-          "y": 3
-        },
-        "id": 2,
-        "options": {
-          "cellHeight": "sm",
-          "footer": {
-            "countRows": false,
-            "fields": [],
-            "reducer": [
-              "count"
-            ],
-            "show": false
-          },
-          "frameIndex": 1,
-          "showHeader": true,
-          "sortBy": [
-            {
-              "desc": false,
-              "displayName": "Uhrzeit"
-            }
-          ]
-        },
-        "pluginVersion": "10.0.1",
-        "targets": [
-          {
-            "columns": [
-              {
-                "selector": "dp.-pt",
-                "text": "Datum",
-                "type": "string"
-              },
-              {
-                "selector": "dp.-pt",
-                "text": "Uhrzeit",
-                "type": "string"
-              },
-              {
-                "selector": "dp.-pp",
-                "text": "Gleis",
-                "type": "number"
-              },
-              {
-                "selector": "dp.-ppth",
-                "text": "Ziel",
-                "type": "string"
-              },
-              {
-                "selector": "tl.-c",
-                "text": "Bahntyp",
-                "type": "string"
-              },
-              {
-                "selector": "dp.-l",
-                "text": "Bahnlinie",
-                "type": "string"
-              }
-            ],
-            "datasource": {
-              "type": "yesoreyeram-infinity-datasource",
-              "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
-            },
-            "filterExpression": "Gleis >0",
-            "filters": [],
-            "format": "table",
-            "global_query_id": "",
-            "parser": "backend",
-            "refId": "Streckeninfo",
-            "root_selector": "timetable.s",
-            "source": "url",
-            "type": "xml",
-            "uql": "parse-xml",
-            "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1/plan/${StationEva}/${__from:date:YYMMDD}/${__to:date:HH}",
-            "url_options": {
-              "data": "",
-              "headers": [],
-              "method": "GET"
-            }
-          }
-        ],
-        "title": "Abfahrtsmonitor",
-        "transformations": [
-          {
-            "id": "convertFieldType",
-            "options": {
-              "conversions": [
-                {
-                  "dateFormat": "YYMMDDhhmm",
-                  "destinationType": "time",
-                  "targetField": "Datum"
-                },
-                {
-                  "dateFormat": "YYMMDDhhmm",
-                  "destinationType": "time",
-                  "targetField": "Uhrzeit"
-                }
-              ],
-              "fields": {}
-            }
-          },
-          {
-            "id": "organize",
-            "options": {
-              "excludeByName": {
-                "Bahntyp": false
-              },
-              "indexByName": {
-                "Bahnlinie": 3,
-                "Bahntyp": 2,
-                "Datum": 0,
-                "Gleis": 4,
-                "Uhrzeit": 1,
-                "Ziel": 5
-              },
-              "renameByName": {}
-            }
-          }
-        ],
-        "type": "table"
-      },
-      {
-        "collapsed": false,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 20
-        },
-        "id": 7,
-        "panels": [],
-        "title": "Statistics",
-        "type": "row"
-      },
-      {
-        "datasource": {
-          "type": "yesoreyeram-infinity-datasource",
-          "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
-        },
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              }
-            },
-            "mappings": []
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 5,
-          "x": 0,
-          "y": 21
-        },
-        "id": 6,
-        "options": {
-          "displayLabels": [
-            "name",
-            "value"
-          ],
-          "legend": {
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "pieType": "pie",
-          "reduceOptions": {
-            "calcs": [],
-            "fields": "/.*/",
-            "values": true
-          },
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "10.0.1",
-        "targets": [
-          {
-            "columns": [
-              {
-                "selector": "dp.-pp",
-                "text": "Gleis",
-                "type": "number"
-              },
-              {
-                "selector": "tl.-c",
-                "text": "Zugtyp",
-                "type": "string"
-              }
-            ],
-            "datasource": {
-              "type": "yesoreyeram-infinity-datasource",
-              "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
-            },
-            "filterExpression": "Gleis >0",
-            "filters": [],
-            "format": "table",
-            "global_query_id": "",
-            "parser": "backend",
-            "refId": "Streckeninfo",
-            "root_selector": "timetable.s",
-            "source": "url",
-            "summarizeBy": "",
-            "type": "xml",
-            "uql": "parse-xml",
-            "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1/plan/${StationEva}/${__from:date:YYMMDD}/${__to:date:HH}",
-            "url_options": {
-              "data": "",
-              "headers": [],
-              "method": "GET"
-            }
-          }
-        ],
-        "title": "Reisemöglichkeiten Zugtyp",
-        "transformations": [
-          {
-            "id": "groupBy",
-            "options": {
-              "fields": {
-                "Gleis": {
-                  "aggregations": [
-                    "count"
-                  ],
-                  "operation": "aggregate"
-                },
-                "Zugtyp": {
-                  "aggregations": [],
-                  "operation": "groupby"
-                }
-              }
-            }
-          },
-          {
-            "id": "organize",
-            "options": {
-              "excludeByName": {},
-              "indexByName": {},
-              "renameByName": {
-                "Gleis (count)": "Anzahl"
-              }
-            }
-          },
-          {
-            "id": "rowsToFields",
-            "options": {}
-          }
-        ],
-        "type": "piechart"
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
-    ],
-    "refresh": "",
-    "schemaVersion": 38,
-    "style": "dark",
-    "tags": [],
-    "templating": {
-      "list": [
-        {
-          "current": {
-            "selected": false,
-            "text": "Karlsruhe Hbf",
-            "value": "Karlsruhe Hbf"
-          },
-          "hide": 0,
-          "label": "Station Suche",
-          "name": "Station",
-          "options": [
-            {
-              "selected": true,
-              "text": "Frankfurt (Main) Hbf",
-              "value": "Frankfurt (Main) Hbf"
-            }
-          ],
-          "query": "Frankfurt (Main) Hbf",
-          "skipUrlSync": false,
-          "type": "textbox"
-        },
-        {
-          "current": {
-            "selected": false,
-            "text": "true",
-            "value": "8000191"
-          },
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
-          },
-          "definition": "Infinity DB Timetable- (infinity) json",
-          "hide": 2,
-          "includeAll": false,
-          "label": "StationEva",
-          "multi": false,
-          "name": "StationEva",
-          "options": [],
-          "query": {
-            "infinityQuery": {
-              "columns": [
-                {
-                  "selector": "number",
-                  "text": "number",
-                  "type": "number"
-                },
-                {
-                  "selector": "isMain",
-                  "text": "main",
-                  "type": "string"
-                }
-              ],
-              "computed_columns": [
-                {
-                  "selector": "",
-                  "text": "",
-                  "type": "string"
-                }
-              ],
-              "filterExpression": "main == 'true'",
-              "filters": [],
-              "format": "table",
-              "parser": "backend",
-              "refId": "variable",
-              "root_selector": "result.evaNumbers",
-              "source": "url",
-              "summarizeExpression": "",
-              "type": "json",
-              "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/station-data/v2/stations?searchstring=${EvaSelect}",
-              "url_options": {
-                "data": "",
-                "method": "GET"
-              }
-            },
-            "query": "",
-            "queryType": "infinity"
-          },
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 0,
-          "type": "query"
-        },
-        {
-          "current": {
-            "selected": false,
-            "text": "3107",
-            "value": "3107"
-          },
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
-          },
-          "definition": "Infinity DB Timetable- (infinity) json",
-          "hide": 2,
-          "includeAll": false,
-          "label": "StationID",
-          "multi": false,
-          "name": "StationID",
-          "options": [],
-          "query": {
-            "infinityQuery": {
-              "columns": [
-                {
-                  "selector": "number",
-                  "text": "",
-                  "type": "number"
-                }
-              ],
-              "filters": [],
-              "format": "table",
-              "parser": "backend",
-              "refId": "variable",
-              "root_selector": "result",
-              "source": "url",
-              "summarizeExpression": "min(number)",
-              "type": "json",
-              "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/station-data/v2/stations?searchstring=${EvaSelect}",
-              "url_options": {
-                "data": "",
-                "method": "GET"
-              }
-            },
-            "query": "",
-            "queryType": "infinity"
-          },
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 0,
-          "type": "query"
-        },
-        {
-          "current": {
-            "selected": false,
-            "text": "Karlsruhe Hbf",
-            "value": "Karlsruhe Hbf"
-          },
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
-          },
-          "definition": "Infinity DB Timetable- (infinity) json",
-          "hide": 0,
-          "includeAll": false,
-          "label": "Auswahl",
-          "multi": false,
-          "name": "EvaSelect",
-          "options": [],
-          "query": {
-            "infinityQuery": {
-              "columns": [
-                {
-                  "selector": "name",
-                  "text": "",
-                  "type": "string"
-                }
-              ],
-              "filters": [],
-              "format": "table",
-              "parser": "backend",
-              "refId": "variable",
-              "root_selector": "result",
-              "source": "url",
-              "type": "json",
-              "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/station-data/v2/stations?searchstring=${Station}*",
-              "url_options": {
-                "data": "",
-                "method": "GET"
-              }
-            },
-            "query": "",
-            "queryType": "infinity"
-          },
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 0,
-          "type": "query"
-        }
-      ]
-    },
-    "time": {
-      "from": "now-6h",
-      "to": "now"
-    },
-    "timepicker": {},
-    "timezone": "",
-    "title": "DB Timetable",
-    "uid": "b1e6e36c-e0c3-411f-9d85-c67d10ac99c4",
-    "version": 32,
-    "weekStart": ""
-  }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "DB Timetable",
+  "uid": "b1e6e36c-e0c3-411f-9d85-c67d10ac99c4",
+  "version": 33,
+  "weekStart": ""
+}
