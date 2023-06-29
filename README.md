@@ -1,6 +1,9 @@
 # TrainDashboard
 Grafana Train Departure and Station-Info System
 
+![image](https://github.com/SaintPatrick86/TrainDashboard/assets/5153820/3409c2f4-c5c5-46ae-8540-df754cc7ccd0)
+
+
 The dashboard provides information about departures at a station listed by Deutsche Bahn. 
 The desired station can be find via a free text input and provides additional information such as the availability of parking, bicycle parking, Wifi or toilets.
 It also includes a small statistics section. 
