@@ -71,14 +71,14 @@
       "id": 3,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^Name$/",
+          "fields": "/^Name_Out$/",
           "values": true
         },
         "textMode": "value"
@@ -95,6 +95,18 @@
             {
               "selector": "mailingAddress.zipcode",
               "text": "PLZ",
+              "type": "string"
+            },
+            {
+              "selector": "federalState",
+              "text": "Bundesland",
+              "type": "string"
+            }
+          ],
+          "computed_columns": [
+            {
+              "selector": "name + ' | ' + Bundesland",
+              "text": "Name_Out",
               "type": "string"
             }
           ],
@@ -260,6 +272,10 @@
                   "color": "green",
                   "index": 1,
                   "text": "1"
+                },
+                "yes": {
+                  "index": 2,
+                  "text": "1"
                 }
               },
               "type": "value"
@@ -279,7 +295,7 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 8,
+        "w": 13,
         "x": 6,
         "y": 0
       },
@@ -325,6 +341,26 @@
             {
               "selector": "hasPublicFacilities",
               "text": "Öffentliches WC",
+              "type": "string"
+            },
+            {
+              "selector": "hasLockerSystem",
+              "text": "Schließfächer",
+              "type": "string"
+            },
+            {
+              "selector": "hasSteplessAccess",
+              "text": "Barrierefrei",
+              "type": "string"
+            },
+            {
+              "selector": "hasTravelCenter",
+              "text": "Reisezentrum",
+              "type": "string"
+            },
+            {
+              "selector": "hasDBLounge",
+              "text": "DB-Lounge",
               "type": "string"
             }
           ],
@@ -421,7 +457,7 @@
       "gridPos": {
         "h": 3,
         "w": 4,
-        "x": 17,
+        "x": 19,
         "y": 0
       },
       "id": 5,
@@ -596,7 +632,7 @@
       },
       "gridPos": {
         "h": 17,
-        "w": 21,
+        "w": 23,
         "x": 0,
         "y": 3
       },
@@ -669,7 +705,7 @@
           "source": "url",
           "type": "xml",
           "uql": "parse-xml",
-          "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1/plan/${StationEva}/${__from:date:YYMMDD}/${__to:date:HH}",
+          "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1/plan/${StationEva}/${__to:date:YYMMDD}/${__to:date:HH}",
           "url_options": {
             "data": "",
             "headers": [],
@@ -853,6 +889,190 @@
         }
       ],
       "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 5,
+        "y": 21
+      },
+      "id": 10,
+      "options": {
+        "basemap": {
+          "config": {},
+          "name": "Layer 0",
+          "tooltip": false,
+          "type": "osm-standard"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": true,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": false,
+              "style": {
+                "color": {
+                  "fixed": "red"
+                },
+                "opacity": 0.3,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 10,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "text": {
+                  "field": "",
+                  "fixed": "",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "A"
+            },
+            "location": {
+              "latitude": "lat",
+              "longitude": "long",
+              "mode": "coords"
+            },
+            "name": "Bahnhof",
+            "tooltip": true,
+            "type": "markers"
+          }
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": true,
+          "id": "europe",
+          "lat": 46,
+          "lon": 14,
+          "zoom": 4
+        }
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "coordinates",
+              "text": "lat_lon",
+              "type": "number"
+            }
+          ],
+          "computed_columns": [
+            {
+              "selector": "",
+              "text": "",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "e0973901-000f-497d-a0b6-ab2f66b9da13"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "result.ril100Identifiers.geographicCoordinates",
+          "source": "url",
+          "type": "json",
+          "url": "https://apis.deutschebahn.com/db-api-marketplace/apis/station-data/v2/stations/${StationID}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Location",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "format": "json",
+            "jsonPaths": [],
+            "keepTime": false,
+            "replace": false,
+            "source": "lat_lon"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "lat_lon": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "0": "long",
+              "1": "lat"
+            }
+          }
+        }
+      ],
+      "type": "geomap"
     }
   ],
   "refresh": "",
@@ -1050,6 +1270,6 @@
   "timezone": "",
   "title": "DB Timetable",
   "uid": "b1e6e36c-e0c3-411f-9d85-c67d10ac99c4",
-  "version": 34,
+  "version": 39,
   "weekStart": ""
 }
