@@ -1,0 +1,1285 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 19,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "af9e3a7b-72b3-4335-9621-b7e6d6468009"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "false": {
+                  "color": "red",
+                  "index": 1
+                },
+                "true": {
+                  "color": "green",
+                  "index": 0
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "noValue": "Keine Daten",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 22,
+        "x": 0,
+        "y": 0
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "textMode": "name"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "adress.city",
+              "text": "Station_City",
+              "type": "string"
+            },
+            {
+              "selector": "adress.street",
+              "text": "Station_Street",
+              "type": "string"
+            },
+            {
+              "selector": "adress.zipcode",
+              "text": "Station_Zipcode",
+              "type": "string"
+            },
+            {
+              "selector": "federalState",
+              "text": "Station_Bundesland",
+              "type": "string"
+            },
+            {
+              "selector": "hasBicycleParking",
+              "text": "Fahrradabstellplatz",
+              "type": "string"
+            },
+            {
+              "selector": "hasCarRental",
+              "text": "Autovermietung",
+              "type": "string"
+            },
+            {
+              "selector": "hasDBLounge",
+              "text": "DB_Lounge",
+              "type": "string"
+            },
+            {
+              "selector": "hasLockerSystem",
+              "text": "Schließfaecher",
+              "type": "string"
+            },
+            {
+              "selector": "hasParking",
+              "text": "Parkplätze",
+              "type": "string"
+            },
+            {
+              "selector": "hasTravelCenter",
+              "text": "Reisezentrum",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "af9e3a7b-72b3-4335-9621-b7e6d6468009"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "https://v6.db.transport.rest/stations/${StationEva}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Ausstattung Bahnhof",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Station_Bundesland": true,
+              "Station_City": true,
+              "Station_Street": true,
+              "Station_Zipcode": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "DB_Lounge": "DB Lounge",
+              "Fahrradabstellplatz": "Fahrradabstellplatz 🚲",
+              "Parkplätze": "",
+              "Schließfaecher": "Schließfächer"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "af9e3a7b-72b3-4335-9621-b7e6d6468009"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Datum"
+            },
+            "properties": [
+              {
+                "id": "custom.minWidth"
+              },
+              {
+                "id": "unit",
+                "value": "time: DD.MM.YYYY"
+              },
+              {
+                "id": "custom.width",
+                "value": 139
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Zeit"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "time: HH:mm"
+              },
+              {
+                "id": "custom.width",
+                "value": 108
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "in"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dateTimeFromNow"
+              },
+              {
+                "id": "custom.width",
+                "value": 199
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Gleis"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 139
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "+"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 103
+              },
+              {
+                "id": "unit",
+                "value": "m"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "from": 0,
+                      "result": {
+                        "color": "transparent",
+                        "index": 0,
+                        "text": "pünktlich"
+                      },
+                      "to": 0
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 1,
+                      "result": {
+                        "color": "yellow",
+                        "index": 1
+                      },
+                      "to": 6
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 7,
+                      "result": {
+                        "color": "orange",
+                        "index": 2
+                      },
+                      "to": 30
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 31,
+                      "result": {
+                        "color": "red",
+                        "index": 3
+                      },
+                      "to": 9999
+                    },
+                    "type": "range"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Linie"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "/ICE\\s/",
+                      "result": {
+                        "color": "#faf4f5",
+                        "index": 0
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "/RB\\s/",
+                      "result": {
+                        "color": "light-red",
+                        "index": 1
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "/S\\s/",
+                      "result": {
+                        "color": "dark-green",
+                        "index": 2
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "/STR\\s/",
+                      "result": {
+                        "color": "orange",
+                        "index": 3
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "/IRE\\s/",
+                      "result": {
+                        "color": "blue",
+                        "index": 4
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "/RE\\s/",
+                      "result": {
+                        "color": "semi-dark-red",
+                        "index": 5
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Auslastung"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "high": {
+                        "color": "transparent",
+                        "index": 1,
+                        "text": "🟡"
+                      },
+                      "low-to-medium": {
+                        "color": "transparent",
+                        "index": 2,
+                        "text": "🟢"
+                      },
+                      "very-high": {
+                        "color": "transparent",
+                        "index": 0,
+                        "text": "🔴"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null+nan",
+                      "result": {
+                        "color": "transparent",
+                        "index": 3,
+                        "text": "⚪"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Verkehrsmittel_Typ"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": []
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 22,
+        "x": 0,
+        "y": 4
+      },
+      "id": 3,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "direction",
+              "text": "Ziel",
+              "type": "string"
+            },
+            {
+              "selector": "loadFactor",
+              "text": "Auslastung",
+              "type": "string"
+            },
+            {
+              "selector": "plannedWhen",
+              "text": "Datum",
+              "type": "string"
+            },
+            {
+              "selector": "platform",
+              "text": "Gleis",
+              "type": "string"
+            },
+            {
+              "selector": "destination.location.latitude",
+              "text": "dest_lat",
+              "type": "string"
+            },
+            {
+              "selector": "destination.location.longitude",
+              "text": "dest_long",
+              "type": "string"
+            },
+            {
+              "selector": "line.name",
+              "text": "Linie",
+              "type": "string"
+            },
+            {
+              "selector": "line.productName",
+              "text": "Verkehrsmittel_Typ",
+              "type": "string"
+            },
+            {
+              "selector": "delay",
+              "text": "delay",
+              "type": "number"
+            },
+            {
+              "selector": "stop.location.latitude",
+              "text": "stop_lat",
+              "type": "string"
+            },
+            {
+              "selector": "stop.location.longitude",
+              "text": "stop_long",
+              "type": "string"
+            }
+          ],
+          "computed_columns": [
+            {
+              "selector": "delay/60",
+              "text": "+",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "af9e3a7b-72b3-4335-9621-b7e6d6468009"
+          },
+          "filterExpression": "${Bus}",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "departures",
+          "source": "url",
+          "type": "json",
+          "url": "https://v6.db.transport.rest/stops/${StationEva}/departures?duration=90&results=100&linesOfStops=false&remarks=true&language=en",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Abfahrtsmonitor",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "time",
+                "targetField": "Datum"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Zeit",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "Datum"
+              ],
+              "reducer": "last"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "in",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "Zeit"
+              ],
+              "reducer": "last"
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "+": false,
+              "Verkehrsmittel_Typ": true,
+              "delay": true,
+              "dest_lat": true,
+              "dest_long": true,
+              "plannedPlatform": true,
+              "stop_lat": true,
+              "stop_long": true
+            },
+            "indexByName": {
+              "+": 2,
+              "Datum": 0,
+              "Gleis": 4,
+              "Linie": 7,
+              "Zeit": 1,
+              "Ziel": 8,
+              "delay": 5,
+              "in": 3,
+              "plannedPlatform": 6
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 5,
+      "panels": [],
+      "title": "Statisitk",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "af9e3a7b-72b3-4335-9621-b7e6d6468009"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 5,
+        "x": 0,
+        "y": 19
+      },
+      "id": 4,
+      "options": {
+        "displayLabels": [
+          "name",
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/.*/",
+          "values": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "line.id",
+              "text": "id",
+              "type": "string"
+            },
+            {
+              "selector": "line.productName",
+              "text": "Zugtyp",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "af9e3a7b-72b3-4335-9621-b7e6d6468009"
+          },
+          "filterExpression": "",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "Streckeninfo",
+          "root_selector": "departures",
+          "source": "url",
+          "summarizeBy": "",
+          "type": "json",
+          "uql": "parse-xml",
+          "url": "https://v6.db.transport.rest/stops/${StationEva}/departures?duration=60&linesOfStops=false&remarks=true&language=en",
+          "url_options": {
+            "data": "",
+            "headers": [],
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Reisemöglichkeiten Zugtyp",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Gleis": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "aggregate"
+              },
+              "Zugtyp": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "id": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Gleis (count)": "Anzahl"
+            }
+          }
+        },
+        {
+          "id": "rowsToFields",
+          "options": {}
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "af9e3a7b-72b3-4335-9621-b7e6d6468009"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 7,
+        "x": 5,
+        "y": 19
+      },
+      "id": 6,
+      "options": {
+        "basemap": {
+          "config": {},
+          "name": "Layer 0",
+          "opacity": 1,
+          "tooltip": true,
+          "type": "osm-standard"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": false,
+              "style": {
+                "color": {
+                  "fixed": "dark-green"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "text": {
+                  "field": "Ziel",
+                  "fixed": "",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "A"
+            },
+            "location": {
+              "latitude": "dest_lat",
+              "longitude": "dest_long",
+              "mode": "coords"
+            },
+            "name": "Destinations",
+            "tooltip": true,
+            "type": "markers"
+          },
+          {
+            "config": {
+              "showLegend": false,
+              "style": {
+                "color": {
+                  "fixed": "red"
+                },
+                "opacity": 0.5,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "A"
+            },
+            "location": {
+              "latitude": "stop_lat",
+              "longitude": "stop_long",
+              "mode": "coords"
+            },
+            "name": "Origin",
+            "tooltip": true,
+            "type": "markers"
+          },
+          {
+            "config": {
+              "blur": 10,
+              "radius": 12,
+              "weight": {
+                "fixed": 1,
+                "max": 1,
+                "min": 0
+              }
+            },
+            "location": {
+              "latitude": "dest_lat",
+              "longitude": "dest_long",
+              "mode": "coords"
+            },
+            "name": "Layer 3",
+            "opacity": 0.4,
+            "tooltip": true,
+            "type": "heatmap"
+          }
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": true,
+          "id": "europe",
+          "lat": 46,
+          "lon": 14,
+          "shared": false,
+          "zoom": 4
+        }
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "destination.location.latitude",
+              "text": "dest_lat",
+              "type": "number"
+            },
+            {
+              "selector": "destination.location.longitude",
+              "text": "dest_long",
+              "type": "number"
+            },
+            {
+              "selector": "stop.location.latitude",
+              "text": "stop_lat",
+              "type": "number"
+            },
+            {
+              "selector": "stop.location.longitude",
+              "text": "stop_long",
+              "type": "number"
+            },
+            {
+              "selector": "direction",
+              "text": "Ziel",
+              "type": "string"
+            },
+            {
+              "selector": "line.name",
+              "text": "Linie",
+              "type": "string"
+            }
+          ],
+          "computed_columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "af9e3a7b-72b3-4335-9621-b7e6d6468009"
+          },
+          "filterExpression": "",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "departures",
+          "source": "url",
+          "type": "json",
+          "url": "https://v6.db.transport.rest/stops/${StationEva}/departures?duration=90&results=100&linesOfStops=false&remarks=true&language=en",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Abfahrtsmonitor",
+      "transformations": [
+        {
+          "id": "spatial",
+          "options": {
+            "action": "modify",
+            "modify": {
+              "op": "lineBuilder",
+              "target": {
+                "latitude": "stop_lat",
+                "longitude": "stop_long",
+                "mode": "coords"
+              }
+            },
+            "source": {
+              "latitude": "stop_lat",
+              "longitude": "stop_long",
+              "mode": "coords"
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "+": false,
+              "Geometry": true,
+              "Verkehrsmittel_Typ": true,
+              "delay": false,
+              "dest_lat": false,
+              "dest_long": false,
+              "plannedPlatform": true,
+              "stop_lat": false,
+              "stop_long": false
+            },
+            "indexByName": {
+              "+": 2,
+              "Datum": 0,
+              "Gleis": 4,
+              "Linie": 7,
+              "Zeit": 1,
+              "Ziel": 8,
+              "delay": 5,
+              "in": 3,
+              "plannedPlatform": 6
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "geomap"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "Karlsruhe Hbf",
+          "value": "Karlsruhe Hbf"
+        },
+        "hide": 0,
+        "label": "Station Suche",
+        "name": "Station",
+        "options": [
+          {
+            "selected": true,
+            "text": "Karlsruhe Hbf",
+            "value": "Karlsruhe Hbf"
+          }
+        ],
+        "query": "Karlsruhe Hbf",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Karlsruhe Hbf",
+          "value": "Karlsruhe Hbf"
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "af9e3a7b-72b3-4335-9621-b7e6d6468009"
+        },
+        "definition": "Infinity Hafas- (infinity) json",
+        "hide": 0,
+        "includeAll": false,
+        "label": "EvaSelect",
+        "multi": false,
+        "name": "EvaSelect",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "name",
+                "text": "Name",
+                "type": "string"
+              },
+              {
+                "selector": "isMeta",
+                "text": "meta",
+                "type": "string"
+              }
+            ],
+            "filterExpression": "meta != 'true'",
+            "filters": [],
+            "format": "table",
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "",
+            "source": "url",
+            "type": "json",
+            "url": "https://v6.db.transport.rest/locations?poi=false&addresses=false&results=20&query=${Station}",
+            "url_options": {
+              "data": "",
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "8000191",
+          "value": "8000191"
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "af9e3a7b-72b3-4335-9621-b7e6d6468009"
+        },
+        "definition": "Infinity Hafas- (infinity) json",
+        "hide": 0,
+        "includeAll": false,
+        "label": "StationEva",
+        "multi": false,
+        "name": "StationEva",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "id",
+                "text": "id",
+                "type": "number"
+              }
+            ],
+            "filters": [],
+            "format": "table",
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "0",
+            "source": "url",
+            "type": "json",
+            "url": "https://v6.db.transport.rest/locations?poi=false&addresses=false&query=${EvaSelect}",
+            "url_options": {
+              "data": "",
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "Ja",
+          "value": "Linie!=''"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Bus",
+        "multi": false,
+        "name": "Bus",
+        "options": [
+          {
+            "selected": true,
+            "text": "Ja",
+            "value": "Linie!=''"
+          },
+          {
+            "selected": false,
+            "text": "Nein",
+            "value": "Gleis !=''"
+          }
+        ],
+        "query": "Ja : Linie!='',Nein : Gleis !=''",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "DB Rest",
+  "uid": "db7ed3f6-e37b-4a2d-9794-07b8520782dc",
+  "version": 51,
+  "weekStart": ""
+}
