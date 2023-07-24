@@ -10,6 +10,9 @@ DepartureBoard_WrapperAPI based on an WrapperAPI from https://transport.rest/ bu
 
 ![grafik](https://github.com/SaintPatrick86/TrainDashboard/assets/5153820/99a5e1e6-1105-40b8-9d93-cea7d77079c3)
 
+![grafik](https://github.com/SaintPatrick86/TrainDashboard/assets/5153820/538cdce6-b22d-4dae-bfa0-04bfb800416e)
+
+
 The dashboards provide information about departures at a station listed by Deutsche Bahn. 
 The desired station can be find via a free text input and provides additional information such as the availability of parking, bicycle parking, Wifi or toilets.
 It also includes a small statistics section. 
